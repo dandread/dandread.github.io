@@ -117,6 +117,6 @@ And, viola! We now have a dataframe that has been filtered and meets our objecti
 
 Pandas is a very powerful, simple library that makes data analysis efficient. Through this example, we saw how we can use pandas to explore, merge, and manipulate data to answer questions. This is just the tip of the iceberg; pandas has a lot of different methods and capabilities that can be used to make data analysis easier.
 
-For more information, visit the pandas documentation ![here](https://pandas.pydata.org/docs/).
+For more information, visit the pandas documentation [here](https://pandas.pydata.org/docs/).
 
 
