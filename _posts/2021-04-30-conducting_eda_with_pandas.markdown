@@ -15,7 +15,7 @@ Let's say you work as a data scientist for an insurance broker in Florida that d
 ## Getting Acclimated
 Now that you have been presented with the project, it's time to get started! The very first step is finding the appropriate datasets to work with. You may not always be given data to work with, so it's up to you to gather what you need. Luckily, you have identified two datasets that you believe contain sufficient information for this project: *clientList*, which contains a list of the active clients, and *policyList*, which contains current policies. Let's go ahead and take a look at each!
 
-We will start by loading our clients into the variable ```clients``` and previewing the results.
+We will start by loading our clients into the variable `clients` and previewing the results.
 
 ```
 clients = pd.read_csv('clientList.csv')
@@ -24,15 +24,16 @@ clients.head()
 
 ![](https://i.ibb.co/WgdQY6V/Screen-Shot-2021-04-30-at-5-17-19-PM.png)
 
-Let's do the exact same thing for our policies by loading them into the variable ```policies``` and previewing the results.
+Let's do the exact same thing for our policies by loading them into the variable `policies` and previewing the results.
 
-```policies = pd.read_csv('policyList.csv')
+```
+policies = pd.read_csv('policyList.csv')
 policies.head()
 ```
 
 ![](https://i.ibb.co/RhfbXFb/Screen-Shot-2021-04-30-at-5-32-58-PM.png)
 
-Right off the bat, we can see that our two dataframes contain different information, but also contain the shared colum ```clientID```, a unique identifier for the clients. 
+Right off the bat, we can see that our two dataframes contain different information, but also contain the shared colum `clientID`, a unique identifier for the clients. 
 
 *Our data is in pretty good shape, but this is usually not the case. Often times, you will run into rows containing NaN values, columns with formatting issues, etc. It's up to you to determine the best course of action to clean up the data. For example, with numeric data you can attempt to fill in NaN using the columns mean or median, or choose to drop those rows completely if they represent a small enough sample. Afterall, you cannot perform math on with NaN values. *
 
@@ -40,12 +41,12 @@ Now that we know what is in each dataframe and how they are related, we can begi
 
 ## Joining/merging dataframes
 Joinging and merging are two methods you can use in pandas to combine data from two seperate datafrmes into one. Both are very similar, but with two distinctions:
-1.  ```merge``` is generally used when you want to merge two dataframes on a column(s) that are not the index - hence, you can choose what you merge on.
-2.  ```join``` is not as flexible, and typically is used to merge on the index (though you can technically specify other columns to join on).
+1.  `merge` is generally used when you want to merge two dataframes on a column(s) that are not the index - hence, you can choose what you merge on.
+2.  `join` is not as flexible, and typically is used to merge on the index (though you can technically specify other columns to join on).
 
 You can read more about joining and merging [here](https://towardsdatascience.com/pandas-join-vs-merge-c365fd4fbf49#:~:text=We%20can%20use%20join%20and,join%20on%20for%20both%20dataframes.)!
 
-Let's merge our two dataframes on the ```clientID``` column and see the results.
+Let's merge our two dataframes on the `clientID` column and see the results.
 
 ```
 merged = clients.merge(policies, on='clientID')
