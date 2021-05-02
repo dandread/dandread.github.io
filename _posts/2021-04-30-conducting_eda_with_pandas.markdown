@@ -61,9 +61,9 @@ This is a great start, but notice that we now have created a larger dataframe; t
 As you can see, each client is listed once and there is a column denoting all the policies they have. We will over again and use some neat, built-in pandas methods to create a dataframe that will be helpful for us.
 
 ## Data manipulation
-We are looking to create a row with all the policy types for each client. ```.apply()``` is a great method that allows you to apply functions to a series within a dataframe in a streamlined, compact manner. This can roughly be related to using ```for``` loops, but that would be a much more cumbersome and lengthy to create.
+We are looking to create a row with all the policy types for each client. `.apply()` is a great method that allows you to apply functions to a series within a dataframe in a streamlined, compact manner. This can roughly be related to using `for` loops, but that would be a much more cumbersome and lengthy to create.
 
-We will start by grouping our policies dataframe by ```clientID```; in order to "group" the policies together, we can pass an easy ```lambda``` function that will join all the policies a particular client has together with a comma. 
+We will start by grouping our policies dataframe by `clientID`; in order to "group" the policies together, we can pass an easy `lambda` function that will join all the policies a particular client has together with a comma. 
 
 We will create a new pandas dataframe from this and reset the index.
 
@@ -75,12 +75,12 @@ policies_grouped.head()
 
 ![](https://i.ibb.co/nPHb5fg/Screen-Shot-2021-04-30-at-6-45-39-PM.png)
 
-Let's rename the ```policyType``` header to something a bit more useful:
-```policies_grouped.rename(columns={'policyType': 'policies'}, inplace=True)```
+Let's rename the `policyType` header to something a bit more useful:
+`policies_grouped.rename(columns={'policyType': 'policies'}, inplace=True)`
 
-**Note: ```inplace=True``` is a great way to bypass having to assign your code to a variable; your changes will be applied inplace.**
+**Note: `inplace=True` is a great way to bypass having to assign your code to a variable; your changes will be applied inplace.**
 
-Finally, let's merge ```policies_grouped``` with our ```clients``` dataframe on ```clientID```.
+Finally, let's merge `policies_grouped` with our `clients` dataframe on `clientID`.
 
 ```
 clientPolicies = clients.merge(policies_grouped, on='clientID')
@@ -91,7 +91,7 @@ clientPolicies
 
 It's looking great! We now have a dataframe that includes all of our clients and their contact information along with all the policies they currently have with us. Let's first filter our dataframe so we only have to concern ourselves with individuals that have home and auto insurance with us; these are the individuals we want to sell umbrella policies to.
 
-To accomplish this, we can create a list of the policies that we want a person to have, and search each row in the ```policies``` column to find out if both policies are in that row. The trick here is to utilize the numpy library. We will create a list of all the individuals that meet our criteria, and then turn that list into an array, and back into a dataframe! The nice part is we can effectively carry all of this out in three, short lines of code.
+To accomplish this, we can create a list of the policies that we want a person to have, and search each row in the `policies` column to find out if both policies are in that row. The trick here is to utilize the numpy library. We will create a list of all the individuals that meet our criteria, and then turn that list into an array, and back into a dataframe! The nice part is we can effectively carry all of this out in three, short lines of code.
 
 ```
 to_filter = ['Home', 'Auto']
@@ -104,8 +104,8 @@ filtered_policies
 
 We can see that only clients that have home and auto insurance with us are in our new dataframe. This is almost exactly what we want. However, there are two people in this dataframe that already have umbrella policies. To remove them, we can perform a similar operation as above, but in just one line.
 
-We will make use of the ```~``` operator, which is the inverse operator.
-```filtered_policies = filtered_policies.loc[~filtered_policies['policies'].str.contains('Umbrella')]```
+We will make use of the `~` operator, which is the inverse operator.
+`filtered_policies = filtered_policies.loc[~filtered_policies['policies'].str.contains('Umbrella')]`
 
 Essentially, we are finding all policies that have "Umbrella", but the inverse operator excludes them from the final dataframe.
 
