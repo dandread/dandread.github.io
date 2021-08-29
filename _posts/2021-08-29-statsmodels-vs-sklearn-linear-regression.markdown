@@ -15,4 +15,4 @@ In this post, we will be looking at simple linear regression using ordinary leas
 In this plot, there are a series of random points that form somewhat of a linear pattern, but it's not exact. The best-fit line (shown in red) created by OLS attempts to get as close to each point as possible so the distance between the line and the points (shown in grey) are minimized. It's pretty straightforward, but powerful; the math, while a bit intimidating at first, is easy enough to follow and unlocks some powerful insights behind this otherwise unassuming graph.
 
 # Equation of a line
-The first step in understanding the math behind linear regression takes us back to algebra and the formula for the equation of a line. If you recall, the equation for a line is \(y = mx + b\).
+The first step in understanding the math behind linear regression takes us back to algebra and the formula for the equation of a line. If you recall, the equation for a line is \\(y = mx + b\\).
