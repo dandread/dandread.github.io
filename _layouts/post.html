@@ -24,10 +24,6 @@ layout: default
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-				{{ content }}
-
-                <hr>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
 		<script type="text/x-mathjax-config">
 			MathJax.Hub.Config({
@@ -45,6 +41,10 @@ layout: default
 				});
 		</script>    
 		
+
+				{{ content }}
+
+                <hr>
                 <ul class="pager">
                     {% if page.previous.url %}
                     <li class="previous">
