@@ -74,17 +74,31 @@ For each point, we subtract the actual y-value from each predicted y-value, squa
 
 If we set everything equal to the error term, we find that the error term is equal to the predicted y-value minus the intercept minus the slope times the x-value. Grouping this second part, you should be able to see this is exactly the same as the predicted y-value minus the actual y-value. Seeing how these equations interplays makes them less intimidating; we are really just moving different pieces around. These equations are all inter-related.
 
-So, if we created a line A with an RSS of 120 and another line B with an RSS of 200, we could safetly assume that line A is a better model. But, what if this amount was much larger, say 120,000 and 200,000 for lines C and D, respectively? Also, what if I told you lines A & C, B & D, were equal to each other in accuracy when fitted to the data? This would appear to fly in the face of what was just explained, but it highlights a critical aspect of the RSS - it is affected by scale. The difference between line A having an RSS of 120 vs 120,000 can be explained by the fact that 120 was in units of kilometers, and 120,000 was in units of meters. So, the only different between the two numbers is scale, but you get two drastically different RSS values. This is why the RSS value, why important, is a poor metric to use when comparing models because it doesn't tell us much.
+So, if we created a line A with an RSS of 120 and another line B with an RSS of 200, we could safetly assume that line A is a better model. But, what if this amount was much larger, say 120,000 and 200,000 for lines C and D, respectively? Also, what if I told you lines A & C, B & D, were equal to each other in accuracy when fitted to the data? This would appear to fly in the face of what was just explained, but it highlights a critical shortcoming of RSS - it is affected by scale. The difference between line A having an RSS of 120 vs 120,000 can be explained by the fact that 120 was in units of kilometers, and 120,000 was in units of meters. So, the only different between the two numbers is scale, but you get two drastically different RSS values. This is why the RSS value, while important, is a poor metric to use when comparing models because it doesn't tell us much.
 
-## Using meters
+### Using meters
 ![meters_example](https://user-images.githubusercontent.com/41350313/131267450-864d6252-14f5-4f1e-98ee-f9a613b647ed.png)
 
-## Using kilometers
+### Using kilometers
 ![kilometers_example](https://user-images.githubusercontent.com/41350313/131267455-ce6f0795-c131-4a23-8267-4e184a3b945a.png)
 
+# R-squared
+The r-squared score (also known as coefficient of determination) measures the proportion of the dependent variable that is explained by the independent variable. In other words, the r-squared score tells us how much of y-variable is explained by the x-variable. If we go back to the bakery example, the r-squared score would 100% because our sales (y) was completely determined by the number of cookies sold (x) and every single point falls on the line. Looking at the examples above, the r-squared score will be less than 100% because not all of the points lie on the line.
 
+The formula for the r-squared score actually uses RSS as seen below:
 
+<p align="center">
+<img width="932" alt="r_squared_formula" src="https://user-images.githubusercontent.com/41350313/131268774-98b599fc-24d6-42f7-b907-9f630b36d36d.png">
+</p>
 
+Before moving on, it's important to highlight the denominator, which hasn't been discussed yet. As shown, the denominator is the sum of squared differences between the predicted y-value and the average y-value (the line about is called "bar", so the proper term for the average y-value is "y-bar"). By finding the difference between each predicted point and the average value, we are essentially calculating the total error the is described by the model. This is known as the total sum of squares (TSS) and is the opposite of RSS. 
+
+### Graph of Total Sum of Squares (TSS)
 ![TSS](https://user-images.githubusercontent.com/41350313/131261756-a43c5b08-cc68-47a7-9a86-a5b0e8a0eacd.png)
 
-It does this by calculating something called an r-squared score (also known as coefficient of determination) which measures the proportion of the dependent variable that is explained by the independent variable. In other words, the r-squared score tells us how much of y-variable is explained by the x-variable. If we go back to the bakery example, the r-squared score would 100% because our sales (y) was completely determined by the number of cookies sold (x) and every single point falls on the line. Looking at the image above, the r-squared score will be less than 100% because not all of the points lie on the line.
+By dividing RSS by TSS and subtracting this quantity from one, we calculate the r-squared value. The r-squared value is not affected by scale; so, if I had a model with an RSS of 120 and another with an RSS of 120,000 but the only difference was scale, the r-squared scores would be identical. Importantly, while r-squared values measure the percent of the dependent variable explained by the independent variable, this is not the same as accuray. **So, if a model has an r-squared score of 0.89, this tells us that the dependent variable is explained by the independent variable 89% of the time, NOT the model is accurate 89% of the time.** 
+
+Going back to the bakery example, our line would have an r-squared value of 1. Why? The RSS value would be 0 because there was no error; our model was accurate 100% of the time.
+
+# Conclusion
+Understanding how OLS works is important in uderstanding how the model is created, used to make predictions, and interperted. The mathematics for simpile linear regression is easy to understand once you've looked at long enough and have done a few regressions. For more complex regressions in higher dimensions, e.g. multiple linear regression with several variables, the math doesn't change much other than to account for more than one variable. Here, the math actually makes these models easier to understand since any model that goes past 3 dimensions is nearly imposible to visualize. Today, models may cotain hundreds or even thousands of variables; while Python does the heavy lifting for us, a little education about the math behind the scenes goes a long way.
